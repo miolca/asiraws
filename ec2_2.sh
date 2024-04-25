@@ -93,7 +93,7 @@ aws ec2 create-tags \
 ###############################################################################
 echo ""
 echo "Creando instancia EC2 Ubuntu  ##################################"
-AWS_AMI_Ubuntu_ID=ami-052efd3df9dad4825
+AWS_AMI_Ubuntu_ID=ami-04e5276ebb8451442
 AWS_EC2_INSTANCE_ID=$(aws ec2 run-instances \
   --image-id $AWS_AMI_Ubuntu_ID \
   --instance-type t2.micro \
