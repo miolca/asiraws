@@ -21,15 +21,15 @@
  ###############################################################
 # Decalre variables
 AWS_REGION="us-east-1"
-VPC_NAME="VPC_SH2"
-VPC_CIDR="10.23.0.0/16"
-SUBNET_CIDR="10.23.1.0/24"
+VPC_NAME="VPC_SH3"
+VPC_CIDR="10.24.0.0/16"
+SUBNET_CIDR="10.24.1.0/24"
 SUBNET_AZ="us-east-1a"
-SUBNET_NAME="subredsh2"
-IGW_NAME="IGW-SH2"
-RT_NAME="RT-SH2"
-SG_NAME="SG-SH2"
-InstName="EC2SH2"
+SUBNET_NAME="subredsh3"
+IGW_NAME="IGW-SH3"
+RT_NAME="RT-SH3"
+SG_NAME="SG-SH3"
+InstName="EC2SH3"
 ###############################################################
 # Create VPC
 echo "$PINK Creating very much yours own Virtual Private Cloud... $NOCOLOR"
