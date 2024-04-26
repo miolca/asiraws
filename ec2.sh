@@ -21,15 +21,15 @@
  ###############################################################
 # Decalre variables
 AWS_REGION="us-east-1"
-VPC_NAME="VPC_QA"
-VPC_CIDR="10.20.0.0/16"
-SUBNET_CIDR="10.20.1.0/24"
+VPC_NAME="VPC_SH2"
+VPC_CIDR="10.23.0.0/16"
+SUBNET_CIDR="10.23.1.0/24"
 SUBNET_AZ="us-east-1a"
-SUBNET_NAME="subredsh1"
-IGW_NAME="IGW-SH1"
-RT_NAME="RT-SH1"
-SG_NAME="SG-SH1"
-InstName="EC2SH1"
+SUBNET_NAME="subredsh2"
+IGW_NAME="IGW-SH2"
+RT_NAME="RT-SH2"
+SG_NAME="SG-SH2"
+InstName="EC2SH2"
 ###############################################################
 # Create VPC
 echo "$PINK Creating very much yours own Virtual Private Cloud... $NOCOLOR"
@@ -140,16 +140,13 @@ echo "$PINK Use $SUBNET_NAME and Security Group $SG_NAME to create your AWS EC2 
 echo "${SEPARATOR2}"
 ###############################################################
 # Create Key Pair and EC2 Instance
-echo "$PINK Creating SSH Key pair.... $NOCOLOR"
-echo "${SEPARATOR2}"
-RESP=$(aws ec2 create-key-pair --key-name QA_Key --query 'KeyMaterial' --region $AWS_REGION --output text > ~/QA_Key.pem)
 echo "$PINK Creating EC2 Instance.... $NOCOLOR"
 echo "${SEPARATOR2}"
 RESP=$(aws ec2 run-instances \
 --image-id $(aws ssm get-parameters --names /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 --region $AWS_REGION --query 'Parameters[0].[Value]' --output text) \
 --count 1 \
 --instance-type t2.micro \
---key-name QA_Key \
+--key-name vockey \
 --security-group-ids  $SG_ID \
 --subnet-id $SUBNET_ID \
 --associate-public-ip-address \
