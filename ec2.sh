@@ -117,17 +117,17 @@ fi
 echo "${SEPARATOR2}"
 ###############################################################
 # Create Security Group and add apt rules to allow legitimate traffic
-echo "$WHITE Creating Security Group..... $NOCOLOR"
+echo "$BLACK Creating Security Group..... $NOCOLOR"
 echo "${SEPARATOR2}"
 SG=$(aws ec2 create-security-group --group-name $SG_NAME --description "Allow SSH & ICMP Traffic" --vpc-id $VPC_ID --output json)
 SG_ID=$(echo -e "$SG" |  /usr/bin/jq '.GroupId' | tr -d '"')
-echo "$WHITE Security Group created fortuitously. $NOCOLOR"
+echo "$BLACK Security Group created fortuitously. $NOCOLOR"
 echo "${SEPARATOR2}"
 # Tagging 
-echo "$WHITE Naming the Security Group... $NOCOLOR"
+echo "$BLACK Naming the Security Group... $NOCOLOR"
 echo "${SEPARATOR2}"
 RESP=$(aws ec2 create-tags --resources $SG_ID --tags "Key=Name,Value=$SG_NAME")
-echo "$WHITE Security Group ID $SG_ID named as $SG_NAME. $NOCOLOR"
+echo "$BLACK Security Group ID $SG_ID named as $SG_NAME. $NOCOLOR"
 echo "${SEPARATOR2}"
 # Enable Ingress traffic for SSH and ICMP
 RESP=$(aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 22 --cidr 0.0.0.0/0)
