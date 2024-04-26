@@ -55,8 +55,10 @@ echo "${SEPARATOR2}"
 # Create IGW
 echo "$PINK Creating Internet Gateway... $NOCOLOR"
 echo "${SEPARATOR2}"
-IGW=$(aws ec2 create-internet-gateway --output json)
-IGW_ID=$(echo -e "$IGW" | /bin/jq '.InternetGateway.InternetGatewayId' | tr -d '"')
+IGW_ID=$(aws ec2 create-internet-gateway \
+  --tag-specifications ResourceType=internet-gateway,Tags=[{Key=Name,Value=$IGW_NAME] \
+  --query 'InternetGateway.{InternetGatewayId:InternetGatewayId}' \
+  --output text)
 echo "$CYAN Internet Gateway ID '$IGW_ID' Created!! $NOCOLOR"
 echo "${SEPARATOR2}"
 # Name IGW
